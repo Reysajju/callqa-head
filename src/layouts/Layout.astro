@@ -1,0 +1,144 @@
+---
+import '@fontsource-variable/inter';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "CallQA - Audio Transcription & Analysis Platform" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content="Transform your audio files into actionable insights with CallQA's advanced AI transcription and analysis platform." />
+    <ViewTransitions />
+  </head>
+  <body class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <div class="cursor"></div>
+    <slot />
+    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.css"></script>
+    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script is:inline>
+      window.addEventListener('load', () => {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100
+        });
+      });
+
+      // Dark mode toggle
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', isDark);
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --cursor-size: 20px;
+  }
+
+  html {
+    font-family: 'Inter Variable', system-ui, sans-serif;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border: 2px solid #3b82f6;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+    display: none;
+  }
+
+  @media (pointer: fine) {
+    .cursor {
+      display: block;
+    }
+    * {
+      cursor: none;
+    }
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Loading animation */
+  .skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<script>
+  // Custom cursor
+  document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.cursor');
+    if (cursor) {
+      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    }
+  });
+
+  // Hover effect
+  document.querySelectorAll('a, button').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      const cursor = document.querySelector('.cursor');
+      if (cursor) {
+        cursor.style.transform += ' scale(1.5)';
+      }
+    });
+    element.addEventListener('mouseleave', () => {
+      const cursor = document.querySelector('.cursor');
+      if (cursor) {
+        cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
+      }
+    });
+  });
+</script>
