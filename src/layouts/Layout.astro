@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 
-const { title = "CallQA - Audio Transcription & Analysis Platform" } = Astro.props;
+const { title = "CallQA - AI-Powered Audio Transcription & Analysis Platform" } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,11 +17,32 @@ const { title = "CallQA - Audio Transcription & Analysis Platform" } = Astro.pro
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <meta name="description" content="Transform your audio files into actionable insights with CallQA's advanced AI transcription and analysis platform." />
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="CallQA - AI-Powered Audio Transcription & Analysis Platform" />
+    <meta name="description" content="Transform your audio files into actionable insights with CallQA's advanced AI transcription and analysis platform. Perfect for call centers, meetings, and quality assurance." />
+    <meta name="keywords" content="audio transcription, call analysis, AI transcription, quality assurance, call center software, speech to text, voice analytics, conversation intelligence" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://callqa.magnatesempire.com/" />
+    <meta property="og:title" content="CallQA - AI-Powered Audio Transcription & Analysis Platform" />
+    <meta property="og:description" content="Transform your audio files into actionable insights with CallQA's advanced AI transcription and analysis platform." />
+    <meta property="og:image" content="https://callqa.magnatesempire.com/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://callqa.magnatesempire.com/" />
+    <meta property="twitter:title" content="CallQA - AI-Powered Audio Transcription & Analysis Platform" />
+    <meta property="twitter:description" content="Transform your audio files into actionable insights with CallQA's advanced AI transcription and analysis platform." />
+    <meta property="twitter:image" content="https://callqa.magnatesempire.com/og-image.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://callqa.magnatesempire.com/" />
+    
     <ViewTransitions />
   </head>
   <body class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-    <div class="cursor"></div>
     <slot />
     <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.css"></script>
     <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -43,33 +64,12 @@ const { title = "CallQA - Audio Transcription & Analysis Platform" } = Astro.pro
 
 <style is:global>
   :root {
-    --cursor-size: 20px;
+    color-scheme: light dark;
   }
 
   html {
     font-family: 'Inter Variable', system-ui, sans-serif;
-  }
-
-  /* Custom cursor */
-  .cursor {
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border: 2px solid #3b82f6;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.2s ease;
-    display: none;
-  }
-
-  @media (pointer: fine) {
-    .cursor {
-      display: block;
-    }
-    * {
-      cursor: none;
-    }
+    scroll-behavior: smooth;
   }
 
   /* Smooth scrollbar */
@@ -116,29 +116,3 @@ const { title = "CallQA - Audio Transcription & Analysis Platform" } = Astro.pro
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 </style>
-
-<script>
-  // Custom cursor
-  document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
-      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
-    }
-  });
-
-  // Hover effect
-  document.querySelectorAll('a, button').forEach(element => {
-    element.addEventListener('mouseenter', () => {
-      const cursor = document.querySelector('.cursor');
-      if (cursor) {
-        cursor.style.transform += ' scale(1.5)';
-      }
-    });
-    element.addEventListener('mouseleave', () => {
-      const cursor = document.querySelector('.cursor');
-      if (cursor) {
-        cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
-      }
-    });
-  });
-</script>
