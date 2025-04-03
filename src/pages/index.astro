@@ -44,12 +44,27 @@ import Layout from '../layouts/Layout.astro';
 
   <main>
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 px-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-      <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
+    <section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+      <!-- Video Background -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80 dark:from-gray-900/90 dark:to-gray-800/90 z-10"></div>
+        <video 
+          class="w-full h-full object-cover"
+          autoplay 
+          loop 
+          muted 
+          playsinline
+          poster="/video-poster.jpg"
+        >
+          <source src="/call.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="relative z-20 max-w-6xl mx-auto text-center" data-aos="fade-up">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient">
           Transform Audio into Actionable Insights
         </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+        <p class="text-xl text-gray-800 dark:text-gray-200 mb-8 max-w-2xl mx-auto">
           CallQA uses advanced AI to transcribe, analyze, and extract valuable insights from your audio files. Perfect for call centers, meetings, and quality assurance.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -270,4 +285,42 @@ import Layout from '../layouts/Layout.astro';
       mobileMenu?.classList.add('hidden');
     });
   });
+
+  // Autoplay video on mobile devices
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.play().catch((error) => {
+        console.log("Video autoplay failed:", error);
+      });
+    }
+  });
 </script>
+
+<style>
+  /* Add styles for video background */
+  video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+  }
+
+  @media (max-aspect-ratio: 16/9) {
+    video {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+    video {
+      width: auto;
+      height: 100%;
+    }
+  }
+</style>
