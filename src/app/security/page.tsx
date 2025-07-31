@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Lock, Database, Eye, Key, AlertTriangle, CheckCircle, Globe, Server, Users, Fingerprint, Certificate } from "lucide-react"
+import { Shield, Lock, Database, Eye, Key, AlertTriangle, CheckCircle, Globe, Server, Users, Fingerprint, Award } from "lucide-react"
 
 export default function SecurityPage() {
   return (
@@ -272,7 +272,7 @@ export default function SecurityPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex items-center gap-3 mb-8">
-            <Certificate className="h-8 w-8 text-primary" />
+            <Award className="h-8 w-8 text-primary" />
             <h2 className="text-3xl font-bold">Compliance and Certifications</h2>
           </div>
           
